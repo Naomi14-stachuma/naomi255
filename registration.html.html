@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+         .container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="time"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="time"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #9b59b6;
+            box-shadow: 0 0 10px rgba(155, 89, 182, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group, 
+        .checkbox-group {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-item input[type="radio"],
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #9b59b6;
+        }
+
+        .radio-item label,
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .favorite-quote {
+            margin-top: 5px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(155, 89, 182, 0.4);
+        }
+ .section-title {
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-left: 4px solid #9b59b6;
+            padding-left: 15px;
+        }
+
+        /* Custom styles for select */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+
+        /* Required field indicator */
+        .required::after {
+            content: ' *';
+            color: #e74c3c;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .radio-group, 
+            .checkbox-group {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form</h2>
+        
+        <form id="registrationForm" onsubmit="return validateForm,action="insert.php" method="post">
+            <!-- First Name and Last Name Row -->
+            <div class="row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName" class=>Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label >Gender</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="male" name="gender" value="Male" required>
+                        <label for="male">Male</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="female" name="gender" value="Female">
+                        <label for="female">Female</label>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+
+            <!-- Favorite Foods Section (using checkboxes) -->
+            <div class="form-group">
+                <label>Please choose your favourite Foods</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="steak" name="foods" value="Steak">
+                        <label for="steak">Steak </label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pizza" name="foods" value="Pizza">
+                        <label for="pizza">Pizza </label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="chicken" name="foods" value="Chicken">
+                        <label for="chicken">Chicken </label>
+                    </div>
+                    
+                </div>
+                <div class="favorite-quote" id="foodError" style="color: #e74c3c; display: none;">Please choose your favourite Foods</div>
+            </div>
+
+            <!-- Favorite Quote Section -->
+            <div class="form-group">
+                
+                <textarea id="quote" name="quote" placeholder="Enter your favorite quote here..." required></textarea>
+                
+            </div>
+
+            <!-- Education Level Section -->
+            <div class="form-group">
+                <label for="education">Level of Education</label>
+                <select id="education" name="education" required>
+                    <option value="" disabled selected>Select a level of Education</option>
+                    <option value="highschool">High School</option>
+                    <option value="bachelors">Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">PhD / Doctorate</option>
+                    <option value="diploma">Diploma </option>
+                    <option value="selfTaught">Self-Taught / Autodidact</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <!-- Favorite Time of Day Section -->
+            <div class="form-group">
+                <label>favourite time of day</label>
+                <select id="timeOfDay" name="timeOfDay" required>
+                    <option value="" disabled selected>Select your favorite time</option>
+                    <option value="morning"> morning</option>
+                    <option value="afternoon">Day</option>
+                    
+                    <option value="night">Night</option>
+                </select>
+            </div>
+
+            
+
+            <!-- Hidden field to store selected foods as string -->
+            <input type="hidden" id="selectedFoods" name="selectedFoods">
+
+            <!-- Submit Button -->
+            <button type="submit">Register Now</button>
+
+            <!-- Form Status Message -->
+            <div id="formMessage" style="text-align: center; margin-top: 20px; padding: 10px; border-radius: 5px; display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission for demo
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const foods = document.querySelectorAll('input[name="foods"]:checked');
+            const quote = document.getElementById('quote').value.trim();
+            const education = document.getElementById('education').value;
+            const timeOfDay = document.getElementById('timeOfDay').value;
+            const customTime = document.getElementById('customTime').value;
+            
+            // Reset previous error messages
+            document.getElementById('foodError').style.display = 'none';
+            
+            // Validate required fields
+            if (!firstName) {
+                showMessage('Please enter your first name', 'error');
+                return false;
+            }
+            
+            if (!lastName) {
+                showMessage('Please enter your last name', 'error');
+                return false;
+            }
+            
+            if (!gender) {
+                showMessage('Please select your gender', 'error');
+                return false;
+            }
+            
+            if (foods.length === 0) {
+                document.getElementById('foodError').style.display = 'block';
+                showMessage('Please select at least one favorite food', 'error');
+                return false;
+            }
+             if (!quote) {
+                showMessage('Please enter your favorite quote', 'error');
+                return false;
+            }
+            
+            if (!education) {
+                showMessage('Please select your education level', 'error');
+                return false;
+            }
+            
+            if (!timeOfDay) {
+                showMessage('Please select your favorite time of day', 'error');
+                return false;
+            }
+            
+            // Collect selected foods
+            const selectedFoods = Array.from(foods).map(food => food.value);
+            document.getElementById('selectedFoods').value = selectedFoods.join(', ');
+            
+            // Prepare form data for display
+            const formData = {
+                'First Name': firstName,
+                'Last Name': lastName,
+                'Gender': gender.value,
+                'Favorite Foods': selectedFoods.join(', '),
+                'Favorite Quote': quote,
+                'Education Level': education,
+                'Favorite Time of Day': timeOfDay,
+                'Custom Time': customTime || 'Not specified'
+            };
+            
+            // Display success message with form data
+            let dataDisplay = '<strong>Registration Successful!</strong><br><br>';
+            dataDisplay += '<strong>Submitted Information:</strong><br>';
+            
+            for (let [key, value] of Object.entries(formData)) {
+                dataDisplay += <strong>${key}:</strong> ${value}<br>;
+            }
+            
+            showMessage(dataDisplay, 'success');
+            
+            // Here you would typically send the data to a server
+            console.log('Form Data:', formData);
+            
+            return false; // Prevent actual form submission
+        }
+        
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.style.display = 'block';
+            messageDiv.innerHTML = message;
+            
+            if (type === 'error') {
+                messageDiv.style.background = '#fee';
+                messageDiv.style.color = '#c00';
+                messageDiv.style.border = '1px solid #fcc';
+            } else {
+                messageDiv.style.background = '#e8f5e9';
+                messageDiv.style.color = '#2e7d32';
+                messageDiv.style.border = '1px solid #a5d6a7';
+            }
+            
+            // Scroll to message
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        
+        // Clear error when selecting foods
+        document.querySelectorAll('input[name="foods"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const checkedFoods = document.querySelectorAll('input[name="foods"]:checked');
+                if (checkedFoods.length > 0) {
+                    document.getElementById('foodError').style.display = 'none';
+                }
+            });
+        });
+        // Character counter for quote
+        document.getElementById('quote').addEventListener('input', function() {
+            const maxLength = 500;
+            const currentLength = this.value.length;
+            const remaining = maxLength - currentLength;
+            
+            // You can add a character counter display if desired
+            console.log(Characters remaining: ${remaining});
+        });
+        
+        // Add some fun interaction
+        const foodCheckboxes = document.querySelectorAll('input[name="foods"]');
+        foodCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                const labels = {
+                    'steak': '🥩',
+                    'pizza': '🍕',
+                    'chicken': '🍗',
+                    'pasta': '🍝',
+                    'salad': '🥗'
+                };
+                
+                if (this.checked) {
+                    console.log(Yum! You like ${this.value} ${labels[this.id] || ''});
+                }
+            });
+        });
+    </script>
+</body>
+</html>
